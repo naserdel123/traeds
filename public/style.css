@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tajawal', sans-serif; }
+
+body {
+    background: #0f0f13 url('https://www.transparenttextures.com/patterns/cubes.png');
+    color: #fff;
+    overflow-x: hidden;
+}
+
+/* الشاشات */
+.screen { display: none; min-height: 100vh; align-items: center; justify-content: center; }
+.screen.active { display: flex; flex-direction: column; }
+.hidden { display: none !important; }
+
+/* تأثير الزجاج (Glassmorphism) */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    width: 90%;
+    max-width: 400px;
+}
+
+.glow-text {
+    text-align: center;
+    text-shadow: 0 0 10px rgba(0, 255, 204, 0.8), 0 0 20px rgba(0, 255, 204, 0.5);
+    color: #00ffcc;
+    margin-bottom: 20px;
+}
+
+/* الأزرار والإدخال */
+input {
+    width: 100%; padding: 12px; margin-bottom: 15px;
+    border-radius: 10px; border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff; outline: none; transition: 0.3s;
+}
+input:focus { background: rgba(255, 255, 255, 0.2); box-shadow: 0 0 10px rgba(0, 255, 204, 0.5); }
+
+.btn-primary {
+    width: 100%; padding: 12px;
+    background: linear-gradient(45deg, #00ffcc, #0088ff);
+    border: none; border-radius: 10px;
+    color: #000; font-weight: bold; font-size: 16px;
+    cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-primary:hover { transform: scale(1.05); box-shadow: 0 0 15px rgba(0, 255, 204, 0.6); }
+
+/* رفع الملفات */
+.file-label {
+    display: block; background: rgba(255,255,255,0.05);
+    padding: 10px; text-align: center; border-radius: 10px;
+    cursor: pointer; margin-bottom: 15px; border: 1px dashed rgba(255,255,255,0.3);
+    transition: 0.3s;
+}
+.file-label:hover { background: rgba(255,255,255,0.1); }
+.file-label input { display: none; }
+
+/* تبويبات الدخول والتسجيل */
+.auth-tabs { display: flex; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.auth-tabs button {
+    flex: 1; background: none; border: none; color: #888;
+    padding: 10px; cursor: pointer; transition: 0.3s; font-weight: bold;
+}
+.auth-tabs button.active { color: #00ffcc; border-bottom: 2px solid #00ffcc; }
+.auth-form { display: none; }
+.auth-form.active { display: block; animation: fadeIn 0.5s ease; }
+
+/* الهيدر */
+.glass-header {
+    width: 100%; padding: 15px 30px;
+    background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(10px);
+    display: flex; justify-content: space-between; align-items: center;
+    position: sticky; top: 0; z-index: 100;
+}
+.user-info { display: flex; align-items: center; gap: 10px; }
+.user-info img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid #00ffcc; }
+
+/* شبكة المنشورات */
+.posts-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px; padding: 20px; width: 100%; max-width: 1200px; margin: auto;
+}
+.post-card {
+    background: rgba(255,255,255,0.05); border-radius: 15px;
+    padding: 15px; border: 1px solid rgba(255,255,255,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: slideUp 0.5s ease;
+}
+.post-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+.trade-images { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+.trade-side { text-align: center; flex: 1; }
+.trade-side img { width: 100%; height: 120px; object-fit: cover; border-radius: 10px; margin-bottom: 5px; }
+.trade-icon { font-size: 24px; color: #00ffcc; margin: 0 10px; animation: pulse 2s infinite; }
+.post-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px;}
+.tiktok-btn { color: #ff0050; font-size: 24px; text-decoration: none; transition: 0.3s; }
+.tiktok-btn:hover { text-shadow: 0 0 10px #ff0050; transform: scale(1.2); }
+
+/* زر الإضافة العائم */
+.fab {
+    position: fixed; bottom: 30px; right: 30px;
+    width: 60px; height: 60px; border-radius: 50%;
+    background: linear-gradient(45deg, #00ffcc, #0088ff);
+    color: #000; font-size: 24px; border: none; cursor: pointer;
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.5); z-index: 1000;
+    transition: 0.3s; display: flex; justify-content: center; align-items: center;
+}
+.fab:hover { transform: scale(1.1) rotate(90deg); }
+
+/* النافذة المنبثقة (Modal) */
+.modal {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.8); z-index: 2000;
+    display: flex; justify-content: center; align-items: center;
+}
+.close-btn { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; color: #ff4444; }
+
+/* أنيميشن */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes scaleIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes slideDown { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
+.scale-in { animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.slide-down { animation: slideDown 0.5s ease-out; }
+.pulse { animation: pulse 2s infinite; }
+  
