@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تريدات روبلوكس</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div id="auth-screen" class="screen active">
+        <div class="glass-panel scale-in">
+            <h1 class="glow-text">تريدات روبلوكس</h1>
+            
+            <div class="auth-tabs">
+                <button id="tab-login" class="active" onclick="toggleAuth('login')">دخول</button>
+                <button id="tab-signup" onclick="toggleAuth('signup')">حساب جديد</button>
+            </div>
+
+            <form id="login-form" class="auth-form active">
+                <input type="text" id="login-username" placeholder="اسم المستخدم" required>
+                <input type="password" id="login-password" placeholder="كلمة المرور" required>
+                <button type="submit" class="btn-primary">تسجيل الدخول</button>
+            </form>
+
+            <form id="signup-form" class="auth-form">
+                <input type="text" id="signup-username" placeholder="اسم المستخدم" required>
+                <input type="password" id="signup-password" placeholder="كلمة المرور" required>
+                <label class="file-label">
+                    <i class="fas fa-camera"></i> اختر صورة أفتار
+                    <input type="file" id="signup-avatar" accept="image/*">
+                </label>
+                <button type="submit" class="btn-primary">إنشاء الحساب</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="main-screen" class="screen hidden">
+        <header class="glass-header slide-down">
+            <div class="user-info">
+                <img id="current-user-avatar" src="" alt="avatar">
+                <span id="current-username"></span>
+            </div>
+            <h2 class="glow-text">أحدث التريدات</h2>
+            <button onclick="logout()" class="btn-logout"><i class="fas fa-sign-out-alt"></i></button>
+        </header>
+
+        <main id="posts-container" class="posts-grid"></main>
+
+        <button id="fab-btn" class="fab pulse" onclick="openModal()"><i class="fas fa-plus"></i></button>
+    </div>
+
+    <div id="post-modal" class="modal hidden">
+        <div class="modal-content glass-panel scale-in">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>نشر تريد جديد</h2>
+            <form id="post-form">
+                <input type="text" id="item-name" placeholder="اسم الشيء الذي تملكه" required>
+                <label class="file-label"><i class="fas fa-upload"></i> صورة الشيء الذي تملكه
+                    <input type="file" id="item-image" accept="image/*" required>
+                </label>
+                
+                <input type="text" id="wanted-name" placeholder="المقابل الذي تريده" required>
+                <label class="file-label"><i class="fas fa-upload"></i> صورة المقابل
+                    <input type="file" id="wanted-image" accept="image/*" required>
+                </label>
+
+                <input type="url" id="tiktok-link" placeholder="رابط حسابك في تيك توك" required>
+                <button type="submit" class="btn-primary">نشر التريد <i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
